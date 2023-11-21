@@ -2,7 +2,7 @@ pub mod services;
 
 use btleplug::platform::Peripheral;
 
-use btleplug_device_specs_macros::define_service;
+pub use btleplug_device_specs_macros::define_service;
 
 pub trait SpecPeripheral<P: btleplug::api::Peripheral>: Sized{
     fn from_peripheral(peripheral: P) -> btleplug::Result<Self>;
