@@ -59,8 +59,10 @@ pub fn characteristic_2_read_function(characteristic_line: &CharacteristicLine) 
     function_name.extend(characteristic_line.characteristic.to_string().chars());
     let function_name = syn::Ident::new(&function_name, characteristic_line.characteristic.span());
 
+    let value_type = characteristic_line.typ;
+
     quote!(
-        pub async fn #function_name(&self) -> btleplug::Result<Vec<u8>>{
+        pub async fn #function_name(&self) -> btleplug::Result<#value_type>{
             let characteristics = self.inner.characteristics();
             let characteristic = characteristics.iter().find(|c|c.uuid == Self::#const_name && c.service_uuid == Self::UUID);
             let Some(characteristic) = characteristic else {
