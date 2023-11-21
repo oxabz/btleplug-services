@@ -60,7 +60,7 @@ pub fn characteristic_2_read_function(characteristic_line: &CharacteristicLine) 
     let function_name = syn::Ident::new(&function_name, characteristic_line.characteristic.span());
 
     quote!(
-        async fn #function_name(&self) -> btleplug::Result<Vec<u8>>{
+        pub async fn #function_name(&self) -> btleplug::Result<Vec<u8>>{
             let characteristics = self.inner.characteristics();
             let characteristic = characteristics.iter().find(|c|c.uuid == Self::#const_name && c.service_uuid == Self::UUID);
             let Some(characteristic) = characteristic else {
