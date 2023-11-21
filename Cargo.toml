@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "./btleplug-device-specs",
+    "./btleplug-device-specs-macros"
+]
